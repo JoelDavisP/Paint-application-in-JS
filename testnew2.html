@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title> Paint Application </title>
+</head>
+
+
+	<p>
+
+		<body style="align-content: center; background-color: #055">
+	<div style="align-items: center;">	
+	<canvas id ="canvas" height = "450px" width = "450px" style = "background-color: #fff; border: solid"></canvas>
+	<br>
+
+	<button  id = "button1" onclick= "but1()" style="font-style: bold: color: black width: 200px height: 100 px"> Pencil</button>
+	<button  id = "button2" onclick ="but2()" style="font-style: bold: color: black width: 200px height: 100 px"> Change background</button>
+	<button id = "button3" onclick = "but3()" style="font-style: bold: color: black  width: 200px height: 100 px"> Clear Screen</button>
+	<button id = "erase"  value= "eraser" style="font-style: bold: color: black  width: 200px height: 100 px"> Eraser</button>
+	<button id = "button5" onclick ="but5()" value= "size" style="font-style: bold: color: black  width: 200px height: 100 px"> Size</button>
+
+
+	</div>
+
+
+<script type="text/javascript">
+
+	f=function(){
+		var a=document.getElementById('canvas')
+		var context=a.getContext('2d')
+		context.save();
+
+}
+
+
+
+	var but1=function() {
+		var button=document.getElementById('button1')
+		ctx.globalCompositeOperation = "source-over";
+		d=prompt('colour');
+		ctx.strokeStyle=d
+		document.getElementsByTagName('BUTTON')[2].style.backgroundColor=d
+		var erase = document.getElementById('erase');
+		erase.addEventListener('click', function(e) {
+
+			ctx.globalCompositeOperation = "destination-out";
+			ctx.strokeStyle = rgba(0,0,0,1);
+			});
+
+	}
+	
+
+ 
+
+	var but2=function(){
+		var d=prompt('Enter which colour do you want for background??')
+		document.getElementById('canvas').style.backgroundColor=d
+	}
+
+	var but3=function() {
+
+	var button3=document.getElementById('button3')
+	button3.addEventListener('click',function(e){
+		var b=document.getElementById('canvas')
+		var ctx=b.getContext('2d')
+		ctx.clearRect(0,0,b.width, b.height);
+	},false)
+
+	}	
+
+	var but5=function(){
+		var s = prompt('Enter the size of the brush')
+		var a=document.getElementById('canvas')
+		var ctx=a.getContext('2d')
+		  ctx.lineWidth = s;
+	}
+
+      function MouseLoc(canvas, e) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top
+        };
+      };
+var ctx = canvas.getContext('2d');
+
+var init = { x: 0, y: 0 };
+
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mousedown', setPosition);
+canvas.addEventListener('mouseenter', setPosition);
+
+function setPosition(e) {
+  init.x = e.clientX;
+  init.y = e.clientY;
+}
+
+function draw(e) {
+  if (e.buttons !== 1) return;
+  ctx.strokeStyle = d;
+  ctx.beginPath();
+  ctx.lineCap = 'round';
+  ctx.moveTo(init.x, init.y); 
+  setPosition(e);
+  ctx.lineTo(init.x, init.y); 
+  ctx.stroke(); 
+ 
+}
+
+</script>
+ 
+</div>
+
+
+</body>
+</html>
